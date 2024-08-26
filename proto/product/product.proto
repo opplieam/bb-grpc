@@ -11,7 +11,7 @@ message GetProductsByUserReq {
 }
 
 message GetProductsByUserRes {
-  Products products = 1;
+  repeated Products products = 1;
 }
 
 service ProductService {
