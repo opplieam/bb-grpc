@@ -1,0 +1,46 @@
+syntax = "proto3";
+
+package product;
+
+import "google/protobuf/timestamp.proto";
+
+option go_package = "github.com/opplieam/bb-grpc/protogen/go/product";
+
+message GetProductsByUserReq {
+  uint32 user_id = 1 [json_name = "user_id"];
+}
+
+message GetProductsByUserRes {
+  Products products = 1;
+}
+
+service ProductService {
+  rpc GetProductsByUser(GetProductsByUserReq) returns (GetProductsByUserRes) {}
+}
+
+message Products {
+  uint32 id = 1;
+  string name = 2;
+  string url = 3;
+  repeated Price prices = 4;
+  Seller seller = 5;
+  repeated Image images = 6;
+}
+
+message Price {
+  uint32 id = 1;
+  double price = 2;
+  google.protobuf.Timestamp created_at = 3 [json_name = "created_at"];
+}
+
+message Seller {
+  uint32 id = 1;
+  string name = 2;
+  string url = 3;
+}
+
+message Image {
+  uint32 id = 1;
+  string url = 2;
+}
+
